@@ -1,42 +1,32 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, ImageBackground, Text } from 'react-native';
-import { RectButton } from 'react-native-gesture-handler';
 
-import giveClassesBgImage from '../../assets/images/give-classes-background.png';
+import * as Styled from './styles';
 
-import styles from './styles';
-
+import bgImage from '../../assets/images/give-classes-background.png';
 
 function GiveClasses() {
   const { goBack } = useNavigation();
 
-  function handleNavigateBack(){
+  function handleNavigateBack() {
     goBack();
   }
 
   return (
-    <View style={styles.container}> 
-      <ImageBackground 
-        source={giveClassesBgImage}
-        style={styles.content}
-        resizeMode="contain"
-      >
-        <Text style={styles.title}>Quer ser um Proffy?</Text>
-        <Text style={styles.description}>
-          Para começar, você precisa se cadastrar como professor na nossa plataforma web.
-        </Text>
-      </ImageBackground>
-      <RectButton 
-        style={styles.okButton}
-        onPress={handleNavigateBack}
-      >
-        <Text style={styles.okButtonText}>
-          Tudo bem
-        </Text>
-      </RectButton>
-    </View>
-  )
+    <Styled.Container>
+      <Styled.Background resizeMode="contain" source={bgImage}>
+        <Styled.Title>Quer ser um Proffy?</Styled.Title>
+        <Styled.Description>
+          Para começar, você precisa se cadastrar como professor na nossa
+          plataforma web.
+        </Styled.Description>
+      </Styled.Background>
+
+      <Styled.OkButton onPress={handleNavigateBack}>
+        <Styled.OkButtonText>Tudo bem</Styled.OkButtonText>
+      </Styled.OkButton>
+    </Styled.Container>
+  );
 }
 
 export default GiveClasses;

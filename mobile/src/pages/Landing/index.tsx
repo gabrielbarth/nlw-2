@@ -1,61 +1,59 @@
-import React from 'react';
-import { View, Image, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native'
-import { RectButton } from 'react-native-gesture-handler'
+import React, { useState, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-import landingImage from '../../assets/images/landing.png';
+import api from '../../services/api';
+
+import * as Styled from './styles';
+
+import landingImg from '../../assets/images/landing.png';
 import studyIcon from '../../assets/images/icons/study.png';
 import giveClassesIcon from '../../assets/images/icons/give-classes.png';
 import heartIcon from '../../assets/images/icons/heart.png';
 
-import styles from './styles';
-
 function Landing() {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
+  const [totalConnections, setTotalConnections] = useState(0);
 
-  function handleNavigateToGiveClassesPage(){
-    navigation.navigate('GiveClasses');
+  useEffect(() => {
+    api.get('/connections').then((response) => {
+      const { total } = response.data;
+
+      setTotalConnections(total);
+    });
+  }, []);
+
+  function handleNavigateToGiveClassesPage() {
+    navigate('GiveClasses');
   }
 
-  function handleNavigateToStudyPages(){
-    navigation.navigate('Study');
+  function handleNavigateToStudyPage() {
+    navigate('Study');
   }
-
   return (
-    <View style={styles.container}>
-      <Image source={landingImage} style={styles.banner}/>
-
-      <Text style={styles.title}>
+    <Styled.Container>
+      <Styled.Landing source={landingImg} />
+      <Styled.Title>
         Seja bem-vindo, {'\n'}
-        <Text style={styles.titleBold}>O que deseja fazer?</Text>
-      </Text>
+        <Styled.TitleBold>O que deseja fazer?</Styled.TitleBold>
+      </Styled.Title>
+      <Styled.ButtonsContainer>
+        <Styled.ButtonPrimary onPress={handleNavigateToStudyPage}>
+          <Styled.Study source={studyIcon} />
+          <Styled.ButtonText>Estudar</Styled.ButtonText>
+        </Styled.ButtonPrimary>
 
-      <View style={styles.buttonsContainer}>
+        <Styled.ButtonSecondary onPress={handleNavigateToGiveClassesPage}>
+          <Styled.Study source={giveClassesIcon} />
+          <Styled.ButtonText>Dar aulas</Styled.ButtonText>
+        </Styled.ButtonSecondary>
+      </Styled.ButtonsContainer>
 
-        <RectButton 
-          style={[styles.button, styles.buttonPrimary]}
-          onPress={handleNavigateToStudyPages}
-        >
-          <Image source={studyIcon}/>
-          <Text style={styles.buttonText}>Estudar</Text>
-        </RectButton>
-
-        <RectButton 
-          onPress={handleNavigateToGiveClassesPage} 
-          style={[styles.button, styles.buttonSecondary]}
-        >
-          <Image source={giveClassesIcon}/>
-          <Text style={styles.buttonText}>Dar Aulas</Text>
-        </RectButton>
-      </View>
-
-      <Text style={styles.totalConnections}>
-        Total de 285 conexões já realizadas {' '}
-        <Image source={heartIcon} />
-      </Text>
-     
-    </View>
-  )
+      <Styled.TotalConnections>
+        Total de {totalConnections} conexões já realizadas.{' '}
+        <Styled.Heart source={heartIcon} />
+      </Styled.TotalConnections>
+    </Styled.Container>
+  );
 }
 
 export default Landing;

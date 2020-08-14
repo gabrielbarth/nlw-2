@@ -1,67 +1,68 @@
-import { StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
+import { RectButton } from 'react-native-gesture-handler';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#8257e5',
-    justifyContent: 'center',
-    padding: 40
-  },
+export const Container = styled.View`
+  flex: 1;
+  background-color: #8257e5;
+  justify-content: center;
+  padding: 40px;
+`;
 
-  banner: {
-    width: '100%',
-    resizeMode: 'contain'
-  },
+export const Landing = styled.Image`
+  width: 100%;
+  resize-mode: contain;
+`;
 
-  title: {
-    fontFamily: 'Poppins_400Regular',
-    color: '#fff',
-    fontSize: 20,
-    lineHeight: 30,
-    marginTop: 80
-  },
+export const Title = styled.Text`
+  font-family: 'Poppins_400Regular';
+  color: #fff;
+  font-size: 20px;
+  line-height: 30px;
+  margin-top: 80px;
+`;
 
-  titleBold: {
-    fontFamily: 'Poppins_600SemiBold',
-  },
+export const TitleBold = styled.Text`
+  font-family: 'Poppins_600SemiBold';
+`;
 
-  buttonsContainer: {
-    flexDirection: 'row',
-    marginTop: 40,
-    justifyContent: "space-between"
-  },
+export const ButtonsContainer = styled.View`
+  flex-direction: row;
+  margin-top: 40px;
+  justify-content: space-between;
+`;
 
-  button: {
-    height: 150,
-    width: '48%',
-    backgroundColor: '#333',
-    borderRadius: 8,
-    padding: 24,
-    justifyContent: 'space-between'
-  },
+export const Study = styled.Image``;
 
-  buttonPrimary: {
-    backgroundColor: '#9871f5'
-  },
+export const ButtonPrimary = styled(RectButton)`
+  height: 150px;
+  width: 48%;
+  background-color: #9871f5;
+  border-radius: 8px;
+  padding: 24px;
+  justify-content: space-between;
+`;
 
-  buttonSecondary: {
-    backgroundColor: '#04d361'
-  },
+export const ButtonSecondary = styled(RectButton)`
+  height: 150px;
+  width: 48%;
+  background-color: #04d361;
+  border-radius: 8px;
+  padding: 24px;
+  justify-content: space-between;
+`;
 
-  buttonText: {
-    fontFamily: 'Archivo_700Bold',
-    color: '#fff',
-    fontSize: 20
-  },
+export const ButtonText = styled.Text`
+  font-family: 'Archivo_700Bold';
+  font-size: 20px;
+  color: #fff;
+`;
 
-  totalConnections: {
-    fontFamily: 'Poppins_400Regular',
-    color: '#d4c2ff',
-    fontSize: 12,
-    lineHeight: 20,
-    maxWidth: 140,
-    marginTop: 40
-  }
-});
+export const TotalConnections = styled.Text`
+  font-family: 'Poppins_400Regular';
+  color: #d4c2ff;
+  line-height: 20px;
+  max-width: 170px;
+  margin-top: 40px;
+`;
 
-export default styles;
+export const Heart = styled.Image``;
